@@ -75,8 +75,8 @@ public class Vector<T> {
         if(index >= size){
             throw new ArrayIndexOutOfBoundsException();
         }
-        for(int i = size-1; i >= index; i--){
-            data[i] = data[i+1];
+        for(int i = size-1; i > index; i--){
+            data[i-1] = data[i];
         }
         data[size--] = null;
         if(size == capacity / 4){
@@ -85,7 +85,7 @@ public class Vector<T> {
     }
 
     public int remove(T item) {
-        for(int i = 0; i>size; i++){
+        for(int i = 0; i < size; i++){
             if(data[i].equals(item)){
                 delete(i);
                 return i;
@@ -94,8 +94,8 @@ public class Vector<T> {
         return -1;
     }
 
-    public int find(int item) {
-        for(int i = 0; i > size; i++){
+    public int find(T item) {
+        for(int i = 0; i < size; i++){
             if(data[i].equals(item)){
                 return i;
             }
@@ -109,4 +109,5 @@ public class Vector<T> {
         System.arraycopy(data,0, newData, 0, size);
         this.data = newData;
     }
+
 }
